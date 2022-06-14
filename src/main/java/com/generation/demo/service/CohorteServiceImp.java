@@ -61,5 +61,10 @@ public class CohorteServiceImp implements CohorteService{
 	public Cohorte updateClase(Cohorte cohorte) {
 		return cohorteRepository.save(cohorte);
 	}
+
+	@Override
+	public Cohorte getCohorteByNumero(Integer numero) {
+		return cohorteRepository.findByNumeroCohorte(numero);
+	}
 	
 }

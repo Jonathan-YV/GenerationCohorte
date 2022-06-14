@@ -5,10 +5,13 @@ cohorteForm.addEventListener('submit', (e) => {
     const numeroCohorte = parseInt(document.querySelector("#numeroCohorte").value);
     const ciudad = document.querySelector("#ciudadCohorte").value;
 
+    const token = localStorage.getItem('token') || null;
+
     fetch('http://localhost:8080/api/cohorte', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': token
         },
         body: JSON.stringify({
             ciudad: ciudad,
@@ -26,12 +29,18 @@ cohorteForm.addEventListener('submit', (e) => {
 
 setTimeout(() => {
     const btnEliminar = document.querySelectorAll(".cohorte");
-    console.log(btnEliminar);
+    
+    const token = localStorage.getItem('token') || null;
+    
     btnEliminar.forEach(btn => {
         btn.addEventListener("click", (e)=>{
             const idCohorte = e.target.id.split("_").pop();
             fetch('http://localhost:8080/api/cohorte/delete/' + idCohorte, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                }
             })
             .then(res => res)
             .then(res => location.reload())
