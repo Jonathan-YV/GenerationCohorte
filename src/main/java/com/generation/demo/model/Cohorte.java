@@ -2,6 +2,7 @@ package com.generation.demo.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class Cohorte {
 	@Column(nullable = false, name="id_cohorte")
 	private Integer id;
 	
-	@Column(nullable = false, name="numero_cohorte")
+	@Column(nullable = false, unique = true, name="numero_cohorte")
 	private Integer numeroCohorte;
 	
 	@Column(nullable = false, name="ciudad")
@@ -28,11 +29,11 @@ public class Cohorte {
 	
 
 	//Especificar la union con alumno
-	@OneToMany(mappedBy = "cohorte")
+	@OneToMany(mappedBy = "cohorte", cascade = CascadeType.REMOVE)
 	private List<Alumno> alumnos;
 	
 	//Especificar la union con instructor
-	@OneToOne(mappedBy = "cohorte")
+	@OneToOne(mappedBy = "cohorte", cascade = CascadeType.REMOVE)
 	private Instructor instructor;
 	
 	

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.generation.demo.model.Cohorte;
 
-@Repository   //Tenemos que decirle que se trata de un repository
+@Repository
 public interface CohorteRepository extends JpaRepository<Cohorte,Integer>{
+	
+	Cohorte findByNumeroCohorte(Integer numeroCohorte);
 	
 	List<Cohorte> findByCiudad(String ciudad);
 	

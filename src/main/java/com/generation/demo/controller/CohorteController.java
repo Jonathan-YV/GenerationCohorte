@@ -48,6 +48,11 @@ public class CohorteController {
 		return cohorteService.getInstructoresAlumnos();
 	}
 	
+	@GetMapping("/numero/{numero}")
+	public Cohorte getCohorteByNumero(@PathVariable Integer numero) {
+		return cohorteService.getCohorteByNumero(numero);
+	}
+	
 	// Escribir 
 	@PostMapping
 	public Cohorte saveCohorte(@RequestBody Cohorte cohorte) {

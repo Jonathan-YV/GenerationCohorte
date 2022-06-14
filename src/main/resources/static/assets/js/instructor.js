@@ -7,7 +7,15 @@ instructorForm.addEventListener("submit",(e) => {
     const puestoInstructor = document.querySelector("#puestoInstructor").value;
     const cohorteInstructor = parseInt(document.querySelector("#cohorteInstructor").value);
 
-    fetch("http://localhost:8080/api/cohorte/numero/" + cohorteInstructor)
+    const token = localStorage.getItem('token') || null;
+
+    fetch("http://localhost:8080/api/cohorte/numero/" + cohorteInstructor, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
     .then(resp => resp.json())
     .then(datos => {
 
@@ -17,7 +25,8 @@ instructorForm.addEventListener("submit",(e) => {
             fetch('http://localhost:8080/api/instructor', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': token
                 },
                 body: JSON.stringify({
                     nombre: nombreInstructor,

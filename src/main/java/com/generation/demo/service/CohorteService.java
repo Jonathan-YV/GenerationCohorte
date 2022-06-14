@@ -11,6 +11,7 @@ public interface CohorteService {
 	
 	// Leer
 	Cohorte getCohorte(Integer id);
+	Cohorte getCohorteByNumero(Integer numero);
 	List<Cohorte> getCohortes();
 	List<Cohorte> getCohortesByCiudad(String ciudad);
 	List<Map<String,Object>> getInstructoresAlumnos();
